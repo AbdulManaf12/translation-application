@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  color: whitesmoke;
+}
+.card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    135deg,
+    #3787dd9f,
+    #c439c4b9,
+    #00ff00,
+    #dddd4bab,
+    #d14c4cb2
+  );
+  background-size: 800% 800%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.translate-wrapper {
+  padding: 20px;
+}
+
+.source-language,
+.target-language {
+  margin-bottom: 15px;
+}
+
+.output {
+  font-weight: bold;
+}
+
+#translated-text {
+  margin-top: 5px;
+  color: #007bff;
+}
+
+#translate-btn {
+  transition: transform 0.2s ease-in-out;
+}
+
+#translate-btn:hover {
+  transform: scale(1.1);
+}
