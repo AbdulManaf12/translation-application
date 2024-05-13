@@ -1,3 +1,5 @@
 *.ini
 static/*.ini
 templates/*.ini
+desktop.ini
+**/desktop.ini
