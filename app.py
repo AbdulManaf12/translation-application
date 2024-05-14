@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
-from utilities import translate_sequence
+from flask import Flask, request, jsonify, render_template
+import json
+import os
 
 app = Flask(__name__)
 
@@ -7,11 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/translate', methods=['POST'])
-def translate():
-    input_text = request.form['text']
-    output_text = translate_sequence(input_text)
-    return output_text
+@app.route('/translate_eng_to_urdu', methods=['POST'])
+def eng_to_urdu():
+    pass
 
 if __name__ == '__main__':
     app.run(debug=True)
