@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translation App</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../static/style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <div class="gradient-background">
-      <div class="container mt-5">
-        <h1>Translation App</h1>
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <div class="translate-wrapper">
-              <div class="text-input form-group">
-                <label for="text">Enter text to translate</label>
-                <textarea
-                  class="form-control"
-                  name="text"
-                  id="text"
-                  rows="4"
-                ></textarea>
-              </div>
-              <button
-                type="button"
-                id="translate-btn"
-                class="btn btn-primary btn-block mb-3"
-              >
-                Translate
-              </button>
-              <div class="output">
-                <p>Translation</p>
-                <p id="translated-text"></p>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Translation App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="gradient-background">
+    <div class="container mt-5">
+      <h1>Translation App</h1>
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <div class="translate-wrapper">
+            <div class="text-input form-group">
+              <label for="text">Enter text to translate</label>
+              <textarea class="form-control" name="text" id="input-text" rows="4"></textarea>
+            </div>
+            <button type="button" id="translate-btn" class="btn btn-primary btn-block mb-3">Translate</button>
+            <div class="output">
+              <p>Translation</p>
+              <textarea class="form-control" name="translated-text" id="translated-text" rows="4" readonly></textarea>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="../static/script.js"></script>
-  </body>
+  <script>
+    $(document).ready(function () {
+      $('#translate-btn').click(function () {
+        var inputText = $('#input-text').val();
+        $.ajax({
+          type: 'POST',
+          url: '/translate',
+          data: { text: inputText },
+          success: function (response) {
+            $('#translated-text').val(response);
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</body>
 </html>
